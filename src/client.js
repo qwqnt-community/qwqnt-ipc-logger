@@ -105,4 +105,13 @@ function sendCommand(command) {
   });
 }
 
+document.querySelector("#download").addEventListener("click", () => {
+  const a = document.createElement("a");
+  const data = superjson.stringify(logMap.get("All"));
+  const blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+  a.href = URL.createObjectURL(blob);
+  a.download = "log.txt";
+  a.click();
+})
+
 initCommand();
