@@ -14,8 +14,9 @@ class Logs {
     return this.log.bind(this);
   }
   log(...args) {
-    console.log(`[${this.logName}]`, ...args);
-    pushLog([`[${this.logName}]`, ...args]);
+    const data = structuredClone(args);
+    console.log(`[${this.logName}]`, ...data);
+    pushLog([`[${this.logName}]`, ...data]);
   }
 }
 
