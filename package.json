@@ -1,6 +1,6 @@
 {
   "$schema": "./plugin.schema.json",
-  "name": "ipc_logger",
+  "name": "qwqnt-ipc-logger",
   "main": "./dist/main.js",
   "description": "ipc通信调试工具",
   "version": "1.2.0",
@@ -17,7 +17,7 @@
   "qwqnt": {
     "name": "ipc通信调试工具",
     "dependencies": {
-      "ipc_interceptor": "^1.0.0"
+      "ipc_interceptor": "^1.2.0"
     }
   },
   "dependencies": {
