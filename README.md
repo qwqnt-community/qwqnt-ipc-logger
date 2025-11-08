@@ -1,4 +1,4 @@
-# QwQNT-ipc-logger
+# qwqnt-ipc-logger
 
 开发用插件，用于在浏览器中输出Ipc通信内容
 
