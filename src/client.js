@@ -20,40 +20,42 @@ async function poll() {
     if (logs && logs.length) {
       for (let i = 0; i < logs.length; i++) {
         const log = logs[i];
-        if (log?.[log.length - 1]?.[0]?.eventName === "LogApi") {
-          continue;
+        try {
+          if (log?.[log.length - 1]?.[0]?.eventName === "LogApi") {
+            continue;
+          }
+          switch (log[0]) {
+            case "[send]":
+              log[0] = `%c[send]`;
+              log.splice(1, 0, "background:#87e8de;color:#000000D9;padding:2px 4px;border-radius: 4px;width:56px;");
+              logMap.get("All").push(log);
+              logMap.get("send").push(log);
+              if (!["send", "All"].includes(filter)) continue;
+              break;
+            case "[receive]":
+              log[0] = `%c[receive]`;
+              log.splice(1, 0, "background:#b7eb8f;color:#000000D9;padding:2px 4px;border-radius: 4px;width:56px;");
+              logMap.get("All").push(log);
+              logMap.get("receive").push(log);
+              if (!["receive", "All"].includes(filter)) continue;
+              break;
+            default:
+              log[0] = `%c${log[0]}`;
+              log.splice(1, 0, "background:#ffdc00;color:#000000D9;padding:2px 4px;border-radius: 4px;");
+              logMap.get("All").push(log);
+              logMap.get("other").push(log);
+              if (!["other", "All"].includes(filter)) continue;
+          }
+          console.log(...log);
+        } catch (err) {
+          console.log("解码出错", err.message, log);
         }
-        switch (log[0]) {
-          case "[send]":
-            log[0] = `%c[send]`;
-            log.splice(1, 0, "background:#87e8de;color:#000000D9;padding:2px 4px;border-radius: 4px;width:56px;");
-            logMap.get("All").push(log);
-            logMap.get("send").push(log);
-            if (!["send", "All"].includes(filter)) continue;
-            break;
-          case "[receive]":
-            log[0] = `%c[receive]`;
-            log.splice(1, 0, "background:#b7eb8f;color:#000000D9;padding:2px 4px;border-radius: 4px;width:56px;");
-            logMap.get("All").push(log);
-            logMap.get("receive").push(log);
-            if (!["receive", "All"].includes(filter)) continue;
-            break;
-          default:
-            log[0] = `%c${log[0]}`;
-            log.splice(1, 0, "background:#ffdc00;color:#000000D9;padding:2px 4px;border-radius: 4px;");
-            logMap.get("All").push(log);
-            logMap.get("other").push(log);
-            if (!["other", "All"].includes(filter)) continue;
-        }
-        console.log(...log);
       }
     }
   } catch (err) {
     if (err.message === "Failed to fetch") {
       console.log("=========已断开连接=========");
       return; // 断线后不再轮询
-    } else {
-      console.log("解码出错", err.message);
     }
   }
   // 请求完成后立即再次发起
@@ -112,6 +114,6 @@ document.querySelector("#download").addEventListener("click", () => {
   a.href = URL.createObjectURL(blob);
   a.download = "log.txt";
   a.click();
-})
+});
 
 initCommand();
