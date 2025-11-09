@@ -3,7 +3,7 @@
   "name": "qwqnt-ipc-logger",
   "main": "./dist/main.js",
   "description": "ipc通信调试工具",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "scripts": {
     "build": "node esbuild.config.mjs"
   },
