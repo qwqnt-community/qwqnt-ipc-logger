@@ -12,8 +12,15 @@
     }
   ],
   "platform": ["win32", "linux", "darwin"],
-  "dependencies": ["ipc_interceptor"],
+  "dependencies": ["qwqnt-ipc-interceptor"],
   "injects": {
     "main": "./dist/main.js"
+  },
+  "repository": {
+    "repo": "https://github.com/qwqnt-community/qwqnt-ipc-logger",
+    "branch": "master",
+    "release": {
+      "file": "qwqnt-ipc-logger.zip"
+    }
   }
 }

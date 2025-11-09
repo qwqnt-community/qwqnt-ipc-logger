@@ -17,7 +17,7 @@
   "qwqnt": {
     "name": "ipc通信调试工具",
     "dependencies": {
-      "ipc_interceptor": "^1.2.0"
+      "qwqnt-ipc-interceptor": "^1.2.1"
     }
   },
   "dependencies": {

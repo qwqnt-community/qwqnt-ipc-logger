@@ -21,9 +21,9 @@ jobs:
           npm run build
           rm -rf ./node_modules
           rm -rf ./src
-          zip -r ./ipc_logger_devtools.zip ./*
+          zip -r ./qwqnt-ipc-logger.zip ./*
       - name: Upload Release File
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: ipc_logger_devtools.zip
+          files: qwqnt-ipc-logger.zip
